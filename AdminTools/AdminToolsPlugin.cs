@@ -36,6 +36,21 @@ namespace AdminTools
 
             });
 
+            SChatCommand bcr = new SChatCommand("/bcr","remove and regive", "/bcr", (player, args) =>
+            {
+                if (player.IsAdmin)
+                {
+                    player.character.HasBCR = !player.character.HasBCR;
+                    player.SendText($"Votre BCR: {player.character.HasBCR}");                    
+                }
+                else
+                {
+                    player.SendText($"Your not an admin");
+                }
+
+
+            });
+
             SChatCommand tp = new SChatCommand("/tp", "teleport to coordinate", "/tp x y z", (player, args) =>
             {
                 if (player.IsAdmin)
@@ -64,6 +79,7 @@ namespace AdminTools
 
 
             });
+            bcr.Register();
             tp.Register();
             pos.Register();
         }
