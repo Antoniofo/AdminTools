@@ -23,11 +23,13 @@ namespace AdminTools
             SChatCommand pos = new SChatCommand("/pos", "get pos", "/pos", async (player, args) =>
             {
                 if (player.IsAdmin)
-                {
-                    await player.Save();
-                    player.SendText($"X:{player.character.LastPosX} Y:{player.character.LastPosY} Z:{player.character.LastPosZ}");
-                    Debug.Log($"X:{player.character.LastPosX} Y:{player.character.LastPosY} Z:{player.character.LastPosZ}");
+                {                    
+                    player.SendText($"X:{player.setup.transform.position.x} Y:{player.setup.transform.position.y} Z:{player.setup.transform.position.z}");
+                    player.SendText($"X:{player.setup.transform.rotation.x} Y:{player.setup.transform.rotation.y} Z:{player.setup.transform.rotation.z} W:{player.setup.transform.rotation.w}");
+                    Debug.Log($"X:{player.setup.transform.position.x} Y:{player.setup.transform.position.y} Z:{player.setup.transform.position.z}");
+                    Debug.Log($"X:{player.setup.transform.rotation.x} Y:{player.setup.transform.rotation.y} Z:{player.setup.transform.rotation.z} W:{player.setup.transform.rotation.w}");                                        
                 }
+                
                 else
                 {
                     player.SendText($"Your not an admin");
