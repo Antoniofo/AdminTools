@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Life;
+﻿using Life;
 using Life.Network;
 using UnityEngine;
 
@@ -20,7 +15,7 @@ namespace AdminTools
             base.OnPluginInit();
 
 
-            SChatCommand pos = new SChatCommand("/pos", "get pos", "/pos", async (player, args) =>
+            SChatCommand pos = new SChatCommand("/pos", "Show your position in the chat and the console", "/pos", (player, args) =>
             {
                 if (player.IsAdmin)
                 {                    
@@ -38,7 +33,7 @@ namespace AdminTools
 
             });
 
-            SChatCommand bcr = new SChatCommand("/bcr","remove and regive", "/bcr", (player, args) =>
+            SChatCommand bcr = new SChatCommand("/bcr", "Give you the BCR or remove if you have it", "/bcr", (player, args) =>
             {
                 if (player.IsAdmin)
                 {
@@ -53,7 +48,7 @@ namespace AdminTools
 
             });
 
-            SChatCommand tp = new SChatCommand("/tp", "teleport to coordinate", "/tp x y z", (player, args) =>
+            SChatCommand tp = new SChatCommand("/tp", "Telepot you to the coordinate you've entered", "/tp <x> <y> <z>", (player, args) =>
             {
                 if (player.IsAdmin)
                 {
