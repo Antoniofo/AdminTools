@@ -4,7 +4,7 @@ Random feature to ease admin life on Nova-Life: Amboise
 ## Installation
 
 - Stop your server
-- Put the (DLL)[https://github.com/Antoniofo/AdminTools/releases] in the Plugin folder of your server.
+- Put the [DLL](https://github.com/Antoniofo/AdminTools/releases) in the Plugin folder of your server.
 - Start the server
 
 ## Inforamtion
