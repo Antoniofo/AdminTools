@@ -11,7 +11,7 @@ Random feature to ease admin life on Nova-Life: Amboise
 
 You will need to be admin in order to use those commands
 
-## Commmands
+## Commands
 
 - /pos            Show your position in the chat and the console
 - /tp <x> <y> <z> Telepot you to the coordinate you've entered
