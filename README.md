@@ -17,3 +17,4 @@ You will need to be admin in order to use those commands
 - /tp <x> <y> <z> Telepot you to the coordinate you've entered
 - /bcr            Give you the BCR or remove if you have it
 - /tpmenu	  Open a menu with all area that you can tp to
+- /admintoolsreload Reload all the config from the file/Add new areas if your config is missing one

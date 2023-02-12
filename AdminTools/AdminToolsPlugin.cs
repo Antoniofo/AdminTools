@@ -1,12 +1,20 @@
-﻿using Life;
+﻿using System.Collections.Generic;
+using System.IO;
+using Crosstales.Common.Util;
+using Life;
 using Life.Network;
 using Life.UI;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace AdminTools
 {
     public class AdminToolsPlugin : Plugin
     {
+        private static string _dirPath;
+        public static string ConfPath;
+        private AdminToolsConfig _config;
+
         public AdminToolsPlugin(IGameAPI api) : base(api)
         {
         }
@@ -15,10 +23,7 @@ namespace AdminTools
         {
             base.OnPluginInit();
 
-            foreach (var area in Nova.server.areas.areas)
-            {
-                Debug.Log($"({area.id}) {area.name}");
-            }
+            InitDirectory();
 
             SChatCommand pos = new SChatCommand("/pos", "Show your position in the chat and the console", "/pos",
                 (player, args) =>
@@ -32,7 +37,8 @@ namespace AdminTools
                         player.SendText($"X:{rotation.x} Y:{rotation.y} Z:{rotation.z} W:{rotation.w}");
                         Debug.Log($"X:{position.x} Y:{position.y} Z:{position.z}");
                         Debug.Log($"X:{rotation.x} Y:{rotation.y} Z:{rotation.z} W:{rotation.w}");
-                    }else
+                    }
+                    else
                     {
                         player.SendText($"Your not an admin");
                     }
@@ -82,17 +88,43 @@ namespace AdminTools
                 });
 
             SChatCommand tpmenu = new SChatCommand("/tpmenu", "Opens a menu to teleport you to areas", "/tpmenu",
-                (player, arg) =>
+                (player, strings) =>
                 {
                     if (player.IsAdmin)
                     {
                         UIPanel tpui = new UIPanel("Teleport Panel", UIPanel.PanelType.Tab)
                             .AddButton("Fermer", player.ClosePanel)
                             .AddButton("Teleport", (ui) => ui.SelectTab());
-                        foreach (var area in Nova.server.areas.areas)
+
+                        try
                         {
-                            tpui.AddTabLine($"({area.id}) {area.name}",
-                                (ui) => { player.setup.TargetSetPosition(area.spawn); });
+                            foreach (var area in Nova.server.areas.areas)
+                            {
+                                if (_config.Areas[area.id])
+                                {
+                                    tpui.AddTabLine($"({area.id}) {area.name}",
+                                        (ui) => { player.setup.TargetSetPosition(area.spawn); });
+                                }
+                            }
+                        }
+                        catch
+                        {
+                            foreach (var area in Nova.server.areas.areas)
+                            {
+                                if (!_config.Areas.ContainsKey(area.id))
+                                    _config.Areas.Add(area.id, true);
+                            }
+
+                            File.WriteAllText(ConfPath, JsonConvert.SerializeObject(_config));
+
+                            foreach (var area in Nova.server.areas.areas)
+                            {
+                                if (_config.Areas[area.id])
+                                {
+                                    tpui.AddTabLine($"({area.id}) {area.name}",
+                                        (ui) => { player.setup.TargetSetPosition(area.spawn); });
+                                }
+                            }
                         }
 
                         player.ShowPanelUI(tpui);
@@ -102,10 +134,99 @@ namespace AdminTools
                         player.SendText("Your not an admin");
                     }
                 });
+            SChatCommand reload = new SChatCommand("/admintoolsreload", "reload config from AdminTools",
+                "/admintoolsreload",
+                (player, arg) =>
+                {
+                    _config = JsonConvert.DeserializeObject<AdminToolsConfig>(File.ReadAllText(ConfPath));
+                    tpmenu.action = (player1, strings) =>
+                    {
+                        if (player.IsAdmin)
+                        {
+                            UIPanel tpui = new UIPanel("Teleport Panel", UIPanel.PanelType.Tab)
+                                .AddButton("Fermer", player.ClosePanel)
+                                .AddButton("Teleport", (ui) => ui.SelectTab());
+
+                            try
+                            {
+                                foreach (var area in Nova.server.areas.areas)
+                                {
+                                    if (_config.Areas[area.id])
+                                    {
+                                        tpui.AddTabLine($"({area.id}) {area.name}",
+                                            (ui) => { player.setup.TargetSetPosition(area.spawn); });
+                                    }
+                                }
+                            }
+                            catch
+                            {
+                                foreach (var area in Nova.server.areas.areas)
+                                {
+                                    if (!_config.Areas.ContainsKey(area.id))
+                                        _config.Areas.Add(area.id, true);
+                                }
+
+                                File.WriteAllText(ConfPath, JsonConvert.SerializeObject(_config));
+
+                                foreach (var area in Nova.server.areas.areas)
+                                {
+                                    if (_config.Areas[area.id])
+                                    {
+                                        tpui.AddTabLine($"({area.id}) {area.name}",
+                                            (ui) => { player.setup.TargetSetPosition(area.spawn); });
+                                    }
+                                }
+                            }
+
+                            player.ShowPanelUI(tpui);
+                        }
+                        else
+                        {
+                            player.SendText("Your not an admin");
+                        }
+                    };
+                    player.SendText("Reload successful");
+                });
+            reload.Register();
             tpmenu.Register();
             bcr.Register();
             tp.Register();
             pos.Register();
+        }
+
+        private void InitDirectory()
+        {
+            _dirPath = $"{pluginsPath}/AdminTools";
+            ConfPath = _dirPath + "/config.json";
+
+            if (!Directory.Exists(_dirPath))
+                Directory.CreateDirectory(_dirPath);
+            if (!File.Exists(ConfPath))
+            {
+                _config = new AdminToolsConfig() { Areas = new SerializableDictionary<uint, bool>() };
+                foreach (var area in Nova.server.areas.areas)
+                {
+                    _config.Areas.Add(area.id, true);
+                }
+
+                File.WriteAllText(ConfPath, JsonConvert.SerializeObject(_config));
+            }
+            else
+            {
+                _config = JsonConvert.DeserializeObject<AdminToolsConfig>(File.ReadAllText(ConfPath));
+            }
+        }
+    }
+
+    [System.Serializable]
+    public class AdminToolsConfig
+    {
+        public SerializableDictionary<uint, bool> Areas;
+
+        public void Save()
+        {
+            string json = JsonConvert.SerializeObject(this);
+            File.WriteAllText(AdminToolsPlugin.ConfPath, json);
         }
     }
 }
