@@ -26,7 +26,6 @@ F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.IMGUIModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.InputLegacyModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.TerrainPhysicsModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.TextRenderingModule.dll
-F:\C#\AdminTools\AdminTools\bin\Debug\Facepunch.Steamworks.Win64.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\BestHTTP.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\Mirror.Components.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\Unity.Postprocessing.Runtime.dll
@@ -36,7 +35,6 @@ F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.JSONSerializeModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.VRModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.ImageConversionModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.UnityWebRequestTextureModule.dll
-F:\C#\AdminTools\AdminTools\bin\Debug\CTNAudio.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\CTNVorbis.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\CTNLayer.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.ScreenCaptureModule.dll
@@ -66,7 +64,6 @@ F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.UNETModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.UnityWebRequestAssetBundleModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.UnityWebRequestAudioModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.UnityWebRequestWWWModule.dll
-F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.NVIDIAModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.DirectorModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.VirtualTexturingModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.GameCenterModule.dll
@@ -78,7 +75,6 @@ F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.SpriteShapeModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.UIElementsModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.UIElementsNativeModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.XRModule.dll
-F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.ARModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\UnityEngine.InputModule.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\VisualDesignCafe.Memory.dll
 F:\C#\AdminTools\AdminTools\bin\Debug\VisualDesignCafe.Threading.dll
