@@ -33,6 +33,7 @@ namespace AdminTools
                         var transform = player.setup.transform;
                         var position = transform.position;
                         var rotation = transform.rotation;
+                        
                         player.SendText($"X:{position.x} Y:{position.y} Z:{position.z}");
                         player.SendText($"X:{rotation.x} Y:{rotation.y} Z:{rotation.z} W:{rotation.w}");
                         Debug.Log($"X:{position.x} Y:{position.y} Z:{position.z}");
